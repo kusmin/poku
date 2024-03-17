@@ -1,5 +1,49 @@
 # Changelog
 
+## [1.9.2](https://github.com/wellwelwel/poku/compare/v1.9.1...v1.9.2) (2024-03-16)
+
+
+### Bug Fixes
+
+* **compatibility:** add support for TypeScript 4.7 or higher ([#114](https://github.com/wellwelwel/poku/issues/114)) ([b44f965](https://github.com/wellwelwel/poku/commit/b44f9652ae4156a982c7886e5094ae2a9ec9e9f2))
+* conflict when using "eachs" for both test and assert ([#117](https://github.com/wellwelwel/poku/issues/117)) ([68e72eb](https://github.com/wellwelwel/poku/commit/68e72eb3daaaf5ee4640347b89e823d70a283b71))
+
+## [1.9.1](https://github.com/wellwelwel/poku/compare/v1.9.0...v1.9.1) (2024-03-15)
+
+
+### Bug Fixes
+
+* **test runner:** ensure all logs when using `debug` option ([#112](https://github.com/wellwelwel/poku/issues/112)) ([42a1e5e](https://github.com/wellwelwel/poku/commit/42a1e5eecc60547226c9539a2adac3d354817fde))
+
+## [1.9.0](https://github.com/wellwelwel/poku/compare/v1.8.1...v1.9.0) (2024-03-10)
+
+
+### Features
+
+* introduce `startScript` and `startService` ([#91](https://github.com/wellwelwel/poku/issues/91)) ([bc414bb](https://github.com/wellwelwel/poku/commit/bc414bb1bea57209b33334963e198dc155378e3b))
+
+## [1.8.1](https://github.com/wellwelwel/poku/compare/v1.8.0...v1.8.1) (2024-03-05)
+
+
+### Bug Fixes
+
+* **Windows:** adapt path sanitization and npx.cmd ([#80](https://github.com/wellwelwel/poku/issues/80)) ([a30359d](https://github.com/wellwelwel/poku/commit/a30359d1e2e4b01b5a2479cf28d97cadc5f3f155))
+
+## [1.8.0](https://github.com/wellwelwel/poku/compare/v1.7.0...v1.8.0) (2024-03-04)
+
+
+### Features
+
+* add `test` helper ([#71](https://github.com/wellwelwel/poku/issues/71)) ([a4ea046](https://github.com/wellwelwel/poku/commit/a4ea046f10e893c262f96fdd4f1c4ac3977cb5f0))
+
+## [1.7.0](https://github.com/wellwelwel/poku/compare/v1.6.1...v1.7.0) (2024-03-03)
+
+
+### Features
+
+* **docs:** introduce Portuguese BR docs ([#66](https://github.com/wellwelwel/poku/issues/66)) ([9a6dc87](https://github.com/wellwelwel/poku/commit/9a6dc871261fc89203c33de758e946df3f555ab0))
+* **logs:** simplify the describe ([#63](https://github.com/wellwelwel/poku/issues/63)) ([790ced0](https://github.com/wellwelwel/poku/commit/790ced0fab67f2e6a5de37e571a4e5343852f548))
+
 ## [1.6.1](https://github.com/wellwelwel/poku/compare/v1.6.0...v1.6.1) (2024-03-01)
 
 

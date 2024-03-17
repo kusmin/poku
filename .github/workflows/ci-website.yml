@@ -1,4 +1,4 @@
-name: 'CI'
+name: '🐷'
 on:
   pull_request:
     paths:
@@ -8,7 +8,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    name: 🌎 Website
+    name: Website
     steps:
       - name: Actions - Checkout
         uses: actions/checkout@v4
@@ -22,8 +22,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.npm
-          key: npm-${{ hashFiles('package-lock.json') }}
-          restore-keys: npm-
+          key: npm-website-${{ hashFiles('website/package-lock.json') }}
+          restore-keys: npm-website-
 
       - name: Installing Dependencies
         run: cd website && npm ci

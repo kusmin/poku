@@ -1,20 +1,15 @@
-import { each } from '../modules/assert.js';
+import { Control, each } from '../configs/each.js';
 
-type Control = {
-  pause: () => void;
-  continue: () => void;
-  reset: () => void;
-};
-
-const status = {
-  before: true,
-  after: true,
+type EachOptions = {
+  immediate?: boolean;
+  test?: boolean;
+  assert?: boolean;
 };
 
 /**
  * - ✅ Handling **global** and **external** services (_preparing a database, for example_)
  * - ✅ It's made for **exclusive use** in combination with **Poku**'s **`assert`** methods
- * - ❌ Changing local variables values and states ([_use a mock instead_](https://poku.io/docs/category/mock))
+ * - ⚠️ Although `beforeEach` accepts local variables changes by using the `imediate` option, it's strongly discouraged ([_use a mock instead_](https://poku.io/docs/category/mock))
  *
  * ---
  *
@@ -32,21 +27,30 @@ const status = {
  * before.reset();
  * ```
  */
-export const beforeEach = (callback: () => unknown): Control => {
-  each.before = () => {
-    if (status.before) callback();
+export const beforeEach = (
+  callback: () => unknown,
+  options?: EachOptions
+): Control => {
+  each.before.test = typeof options?.test === 'boolean' ? options.test : true;
+  each.before.assert =
+    typeof options?.assert === 'boolean' ? options.assert : false;
+
+  options?.immediate && callback();
+
+  each.before.cb = () => {
+    if (each.before.status) callback();
   };
 
   const pause = () => {
-    status.before = false;
+    each.before.status = false;
   };
 
   const continueFunc = () => {
-    status.before = true;
+    each.before.status = true;
   };
 
   const reset = () => {
-    each.before = undefined;
+    each.before.cb = undefined;
   };
 
   return { pause, continue: continueFunc, reset };
@@ -55,7 +59,7 @@ export const beforeEach = (callback: () => unknown): Control => {
 /**
  * - ✅ Handling **global** and **external** services (_preparing a database, for example_)
  * - ✅ It's made for **exclusive use** in combination with **Poku**'s **`assert`** methods
- * - ❌ Changing local variables values and states ([_use a mock instead_](https://poku.io/docs/category/mock))
+ * - ⚠️ Although `afterEach` accepts local variables changes, it's strongly discouraged ([_use a mock instead_](https://poku.io/docs/category/mock))
  *
  * ---
  *
@@ -73,21 +77,28 @@ export const beforeEach = (callback: () => unknown): Control => {
  * after.reset();
  * ```
  */
-export const afterEach = (callback: () => unknown): Control => {
-  each.after = () => {
-    if (status.after) callback();
+export const afterEach = (
+  callback: () => unknown,
+  options: Omit<EachOptions, 'immediate'>
+): Control => {
+  each.after.test = typeof options?.test === 'boolean' ? options.test : true;
+  each.after.assert =
+    typeof options?.assert === 'boolean' ? options.assert : false;
+
+  each.after.cb = () => {
+    if (each.after.status) callback();
   };
 
   const pause = () => {
-    status.after = false;
+    each.after.status = false;
   };
 
   const continueFunc = () => {
-    status.after = true;
+    each.after.status = true;
   };
 
   const reset = () => {
-    each.after = undefined;
+    each.after.cb = undefined;
   };
 
   return { pause, continue: continueFunc, reset };

@@ -1,4 +1,4 @@
-name: 'CI'
+name: '☔️'
 on:
   push:
     branches:
@@ -9,7 +9,8 @@ on:
 jobs:
   coverage:
     runs-on: ubuntu-latest
-    name: ☔️ Coverage
+    timeout-minutes: 1
+    name: Coverage
     steps:
       - name: ➕ Actions - Checkout
         uses: actions/checkout@v4
@@ -23,17 +24,16 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.npm
-          key: npm-${{ hashFiles('package-lock.json') }}
-          restore-keys: npm-
+          key: npm-linux-${{ hashFiles('package-lock.json') }}
+          restore-keys: npm-linux-
 
       - name: 📦 Installing Dependencies
         run: npm ci
 
       - name: 🧪 Checking for Coverage
-        run: npm run test:ci:c8
+        run: npm run test:c8
 
       - name: ☔️ Upload coverage reports to Codecov
         uses: codecov/codecov-action@v4
         with:
           token: ${{ secrets.CODECOV_TOKEN }}
-          slug: wellwelwel/poku

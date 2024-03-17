@@ -1,4 +1,4 @@
-name: CI
+name: 👔
 on:
   push:
     branches:
@@ -11,7 +11,7 @@ jobs:
     timeout-minutes: 5
     strategy:
       fail-fast: false
-    name: 🧑🏻‍🎓 Lint
+    name: Lint
     steps:
       - name: ➕ Actions - Checkout
         uses: actions/checkout@v4
@@ -25,8 +25,8 @@ jobs:
         uses: actions/cache@v4
         with:
           path: ~/.npm
-          key: npm-${{ hashFiles('package-lock.json') }}
-          restore-keys: npm-
+          key: npm-linux-${{ hashFiles('package-lock.json') }}
+          restore-keys: npm-linux-
 
       - name: 📦 Installing Dependencies
         run: npm ci

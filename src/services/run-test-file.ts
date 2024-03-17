@@ -1,6 +1,6 @@
 import process from 'node:process';
-import { EOL } from 'node:os';
 import path from 'node:path';
+import { EOL } from 'node:os';
 import { spawn } from 'node:child_process';
 import { runner } from '../helpers/runner.js';
 import { indentation } from '../helpers/indentation.js';
@@ -26,9 +26,8 @@ export const runTestFile = (
 ): Promise<boolean> =>
   new Promise(async (resolve) => {
     const runtimeOptions = runner(filePath, configs);
-    const runtime = runtimeOptions.shift();
-    const runtimeArguments =
-      runtimeOptions.length > 1 ? [...runtimeOptions, filePath] : [filePath];
+    const runtime = runtimeOptions.shift()!;
+    const runtimeArguments = [...runtimeOptions, filePath];
 
     const fileRelative = path.relative(process.cwd(), filePath);
     const showLogs = !isQuiet(configs);
@@ -40,7 +39,7 @@ export const runTestFile = (
     const log = () => {
       const outputs = removeConsecutiveRepeats(
         showSuccess
-          ? output.split(/(\r\n|\r|\n)/)
+          ? [output]
           : output.split(/(\r\n|\r|\n)/).filter((current) => {
               if (current.includes('Exited with code')) return false;
               return (
@@ -97,7 +96,7 @@ export const runTestFile = (
     if (!(await beforeEach(fileRelative, configs))) return false;
 
     // Export spawn helper is not an option
-    const child = spawn(runtime!, runtimeArguments, {
+    const child = spawn(runtime, runtimeArguments, {
       stdio: ['inherit', 'pipe', 'pipe'],
       shell: false,
       env: {

@@ -3,7 +3,7 @@ import TabItem from '@theme/TabItem';
 
 # Comparing Test Runners
 
-**Comparison using **Node.js**, **TypeScript** (_no compile_) and **ESM** to show a simple error test:**
+**Comparison using **TypeScript** (_no compile_) and **ESM** to show a simple error test:**
 
 - Let's starting from installation 🔬
 
@@ -18,7 +18,12 @@ import TabItem from '@theme/TabItem';
 npm i -D poku tsx
 ```
 
-> ~10M
+<a href='https://pkg-size.dev/poku tsx'>
+  <img
+    src='https://pkg-size.dev/badge/install/22162793'
+    title='Install size for tsx, and poku'
+  />
+</a>
 
 <hr />
 
@@ -66,7 +71,12 @@ Adopt a Poku for yourself 🩵
 npm i -D jest @types/jest ts-jest
 ```
 
-> ~65M
+<a href='https://pkg-size.dev/jest @types/jest ts-jest'>
+  <img
+    src='https://pkg-size.dev/badge/install/56409485'
+    title='Install size for ts-jest, @types/jest, and jest'
+  />
+</a>
 
 <hr />
 
@@ -126,12 +136,28 @@ npx jest
 ### Installation
 
 ```bash
-npm i -D mocha @types/mocha chai @types/chai tsx
+npm i -D mocha @types/mocha chai @types/chai ts-node
 ```
 
-> ~18M
+<a href='https://pkg-size.dev/mocha @types/mocha chai @types/chai ts-node'>
+  <img
+    src='https://pkg-size.dev/badge/install/44192453'
+    title='Install size for mocha, ts-node, chai, @types/mocha, and @types/chai'
+  />
+</a>
 
 <hr />
+
+### Configuring ts-node
+
+> _ts-loader.js_
+
+```js
+import { register } from 'node:module';
+import { pathToFileURL } from 'node:url';
+
+register('ts-node/esm', pathToFileURL('./'));
+```
 
 ### Configuring Mocha
 
@@ -139,9 +165,8 @@ npm i -D mocha @types/mocha chai @types/chai tsx
 
 ```json
 {
-  "require": "tsx",
-  "extension": ["ts"],
-  "spec": "./test/**/*.test.ts"
+  "spec": "./test/**/*.test.ts",
+  "require": "ts-loader.js"
 }
 ```
 
@@ -180,7 +205,12 @@ npx mocha
 npm i -D vitest ts-node
 ```
 
-> ~66M
+<a href='https://pkg-size.dev/vitest ts-node'>
+  <img
+    src='https://pkg-size.dev/badge/install/75811670'
+    title='Install size for vitest, and ts-node'
+  />
+</a>
 
 <hr />
 
@@ -227,24 +257,30 @@ npx vitest run
   </TabItem>
   <TabItem value='AVA'>
 
-## [AVA](https://github.com/avajs/ava) (CJS)
-
-:::info
-
-I was unable to test **AVA** as **ESM** without compile **TypeScript**. <br />
-Please submit a _PR_ if you know how to reach this approach.
-
-- Related: [avajs/ava#3308](https://github.com/avajs/ava/discussions/3308).
-
-:::
+## [AVA](https://github.com/avajs/ava)
 
 ### Installation
 
 ```bash
-npm i -D ava tsx
+npm i -D ava tsimp
 ```
 
-> ~26M
+<a href='https://pkg-size.dev/ava tsimp'>
+  <img
+    src='https://pkg-size.dev/badge/install/45894421'
+    title='Install size for tsimp, and ava'
+  />
+</a>
+
+<hr />
+
+### Configuring Git
+
+> Include in the _.gitignore_:
+
+```json
+/.tsimp
+```
 
 <hr />
 
@@ -257,9 +293,9 @@ npm i -D ava tsx
   "ava": {
     "files": ["test/**/*.test.ts"],
     "extensions": {
-      "ts": "commonjs"
+      "ts": "module"
     },
-    "nodeArguments": ["--import=tsx"]
+    "nodeArguments": ["--import=tsimp"]
   }
 }
 ```

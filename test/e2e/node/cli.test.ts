@@ -1,7 +1,6 @@
-import process from 'node:process';
 import { spawn } from 'node:child_process';
-import { assert } from '../../src/index.js';
-import { runner } from '../../src/helpers/runner.js';
+import { assert, describe, test } from '../../../src/index.js';
+import { runner } from '../../../src/helpers/runner.js';
 
 // `/_.ts`: Simulate TypeScript file for Deno
 const currentFile = typeof __filename === 'string' ? __filename : '/_.ts';
@@ -11,12 +10,10 @@ const ext = runtime === 'node' ? 'js' : 'ts';
 
 const executeCLI = (args: string[]): Promise<string> =>
   new Promise((resolve, reject) => {
-    const runtimeArguments =
-      runtimeOptions.length > 1 ? [...runtimeOptions, ...args] : [...args];
+    const runtimeArguments = [...runtimeOptions, ...args];
 
     const childProcess = spawn(runtime, runtimeArguments, {
       shell: false,
-      cwd: process.cwd(),
     });
 
     let output: string = '';
@@ -29,6 +26,10 @@ const executeCLI = (args: string[]): Promise<string> =>
       reject(data.toString());
     });
 
+    childProcess.on('error', (error: Buffer) => {
+      reject(error.toString());
+    });
+
     childProcess.on('close', (code: number) => {
       if (code === 0) {
         resolve(output);
@@ -38,11 +39,16 @@ const executeCLI = (args: string[]): Promise<string> =>
     });
   });
 
-executeCLI([`./src/bin/index.${ext}`, `test/integration/code.test.${ext}`])
-  .then((output) => {
-    assert.match(JSON.stringify(output), /PASS › 1/, 'CLI needs to pass 1');
-    assert.match(JSON.stringify(output), /FAIL › 0/, 'CLI needs to fail 0');
-  })
-  .catch((error) => {
-    console.error('CLI test failed:', error);
-  });
+test(async () => {
+  describe('Poku Test Runner: CLI', { background: false, icon: '🐷' });
+
+  const output = await executeCLI([
+    ext === 'ts' ? `src/bin/index.${ext}` : `ci/src/bin/index.${ext}`,
+    ext === 'ts'
+      ? `test/integration/code.test.${ext}`
+      : `ci/test/integration/code.test.${ext}`,
+  ]);
+
+  assert(/PASS › 1/.test(JSON.stringify(output)), 'CLI needs to pass 1');
+  assert(/FAIL › 0/.test(JSON.stringify(output)), 'CLI needs to fail 0');
+});
