@@ -1,5 +1,45 @@
 # Changelog
 
+## [1.10.0](https://github.com/kusmin/poku/compare/v1.9.2...v1.10.0) (2024-03-23)
+
+
+### Features
+
+* add `test` helper ([#71](https://github.com/kusmin/poku/issues/71)) ([a4ea046](https://github.com/kusmin/poku/commit/a4ea046f10e893c262f96fdd4f1c4ac3977cb5f0))
+* add listFiles method ([#10](https://github.com/kusmin/poku/issues/10)) ([0b78815](https://github.com/kusmin/poku/commit/0b78815e08722635934a9fef793dd5f11b7458d3))
+* add option exclude ([#7](https://github.com/kusmin/poku/issues/7)) ([74becbc](https://github.com/kusmin/poku/commit/74becbc36e223abc8b580ac1ef8eb86a7ea8621a))
+* **assert:** automatic describe it ([#29](https://github.com/kusmin/poku/issues/29)) ([77c0b54](https://github.com/kusmin/poku/commit/77c0b541607c69e1df7b5ded57e13f274459c130))
+* **assert:** human readability `assert` ([#14](https://github.com/kusmin/poku/issues/14)) ([66e5a52](https://github.com/kusmin/poku/commit/66e5a52051d40b741a27c9634e73f380a99d8e0b))
+* befriend Bun and Deno ([#2](https://github.com/kusmin/poku/issues/2)) ([7d11888](https://github.com/kusmin/poku/commit/7d1188802f99a8516119764ca9d83f397132fb9c))
+* **CLI:** flexible include ([#12](https://github.com/kusmin/poku/issues/12)) ([ec63f28](https://github.com/kusmin/poku/commit/ec63f281fe5fe3cc938537b6e167d9416c41c6cd))
+* **docs:** introduce Portuguese BR docs ([#66](https://github.com/kusmin/poku/issues/66)) ([9a6dc87](https://github.com/kusmin/poku/commit/9a6dc871261fc89203c33de758e946df3f555ab0))
+* innovating `beforeEach` and `afterEach` ([#53](https://github.com/kusmin/poku/issues/53)) ([3ea3a12](https://github.com/kusmin/poku/commit/3ea3a1227ee1fd897759fc47b24511f904f6b927))
+* introduce `startScript` and `startService` ([#91](https://github.com/kusmin/poku/issues/91)) ([bc414bb](https://github.com/kusmin/poku/commit/bc414bb1bea57209b33334963e198dc155378e3b))
+* introduce CLI usage ([4e77c0c](https://github.com/kusmin/poku/commit/4e77c0cae077215824748ee18adbfdd56e67aac7))
+* **logs:** simplify the describe ([#63](https://github.com/kusmin/poku/issues/63)) ([790ced0](https://github.com/kusmin/poku/commit/790ced0fab67f2e6a5de37e571a4e5343852f548))
+* Poku's birth ([599c73a](https://github.com/kusmin/poku/commit/599c73a63af9c329408da78a79b844065d1dbbc5))
+* set platform manually ([#11](https://github.com/kusmin/poku/issues/11)) ([e681281](https://github.com/kusmin/poku/commit/e681281ffdc08718f96e5b6b4c526d4bf8c8559f))
+* support parallel running ([778350a](https://github.com/kusmin/poku/commit/778350aca9fbc8298e8f44a24e038fdb6525eff0))
+* support target file and directories ([#47](https://github.com/kusmin/poku/issues/47)) ([4353996](https://github.com/kusmin/poku/commit/43539969f9f2a444026ba52cc9e77a440953cea1))
+* **website:** introduce Poku's website ([#20](https://github.com/kusmin/poku/issues/20)) ([172f081](https://github.com/kusmin/poku/commit/172f08110aecf9c82ff2120f085334c6c6f5740f))
+
+
+### Bug Fixes
+
+* **bun:** file path is not parsed ([#58](https://github.com/kusmin/poku/issues/58)) ([dad9498](https://github.com/kusmin/poku/commit/dad9498b8f6392343da1443d0f7913ec63216126))
+* **cli:** allow no log and log success options ([#15](https://github.com/kusmin/poku/issues/15)) ([bff6a15](https://github.com/kusmin/poku/commit/bff6a1588a80823ac23ca078faad057a38e2b268))
+* **CLI:** support parallel option ([#9](https://github.com/kusmin/poku/issues/9)) ([f32d20a](https://github.com/kusmin/poku/commit/f32d20ad25707c46044d50500c3db82d40e157b9))
+* **compatibility:** add support for TypeScript 4.7 or higher ([#114](https://github.com/kusmin/poku/issues/114)) ([b44f965](https://github.com/kusmin/poku/commit/b44f9652ae4156a982c7886e5094ae2a9ec9e9f2))
+* conflict when using "eachs" for both test and assert ([#117](https://github.com/kusmin/poku/issues/117)) ([68e72eb](https://github.com/kusmin/poku/commit/68e72eb3daaaf5ee4640347b89e823d70a283b71))
+* **filter:** include both .test. and .spec. as default ([#27](https://github.com/kusmin/poku/issues/27)) ([9172160](https://github.com/kusmin/poku/commit/91721608d5c102d81aa05a309743579fdf06b7ae))
+* **filter:** support multiple files on CLI ([#5](https://github.com/kusmin/poku/issues/5)) ([76da3d1](https://github.com/kusmin/poku/commit/76da3d1903c21db984489f07fb5a5de8292abeaa))
+* process exit on parallel runs ([d4da908](https://github.com/kusmin/poku/commit/d4da908ee7ea632f4e15bf81d3a10826d448ac72))
+* **security:** sanitize path and prevent shell scripts ([#33](https://github.com/kusmin/poku/issues/33)) ([39f7d8c](https://github.com/kusmin/poku/commit/39f7d8c8b6e5e18a66f56581a6e0665132baa04c))
+* **test runner:** ensure all logs when using `debug` option ([#112](https://github.com/kusmin/poku/issues/112)) ([42a1e5e](https://github.com/kusmin/poku/commit/42a1e5eecc60547226c9539a2adac3d354817fde))
+* **types:** expose types ([696b74d](https://github.com/kusmin/poku/commit/696b74d3316a01ad149d56387097432a20c2a0a2))
+* **types:** remove tests from compilation ([3bc6a65](https://github.com/kusmin/poku/commit/3bc6a657fbc039b844585e5de66732782860e3b6))
+* **Windows:** adapt path sanitization and npx.cmd ([#80](https://github.com/kusmin/poku/issues/80)) ([a30359d](https://github.com/kusmin/poku/commit/a30359d1e2e4b01b5a2479cf28d97cadc5f3f155))
+
 ## [1.9.2](https://github.com/wellwelwel/poku/compare/v1.9.1...v1.9.2) (2024-03-16)
 
 
